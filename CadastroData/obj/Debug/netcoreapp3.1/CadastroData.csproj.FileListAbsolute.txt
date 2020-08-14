@@ -1,0 +1,13 @@
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\obj\Debug\netcoreapp3.1\CadastroData.csprojAssemblyReference.cache
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\obj\Debug\netcoreapp3.1\CadastroData.AssemblyInfoInputs.cache
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\obj\Debug\netcoreapp3.1\CadastroData.AssemblyInfo.cs
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\obj\Debug\netcoreapp3.1\CadastroData.csproj.CoreCompileInputs.cache
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\bin\Debug\netcoreapp3.1\CadastroData.exe
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\bin\Debug\netcoreapp3.1\CadastroData.deps.json
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\bin\Debug\netcoreapp3.1\CadastroData.runtimeconfig.json
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\bin\Debug\netcoreapp3.1\CadastroData.runtimeconfig.dev.json
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\bin\Debug\netcoreapp3.1\CadastroData.dll
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\bin\Debug\netcoreapp3.1\CadastroData.pdb
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\obj\Debug\netcoreapp3.1\CadastroData.dll
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\obj\Debug\netcoreapp3.1\CadastroData.pdb
+C:\Users\Damaris-PC\source\repos\Damis1988\Aniversario\CadastroData\obj\Debug\netcoreapp3.1\CadastroData.genruntimeconfig.cache
