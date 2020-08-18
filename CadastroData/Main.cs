@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CadastroData
 {
@@ -132,13 +131,17 @@ namespace CadastroData
 
             Program criarCadastro = new Program(nome, sobrenome, dataEntrada);
             pessoa.Add(criarCadastro);
-            Console.WriteLine(criarCadastro);
+           
+              
         }
 
         public static void ConsultarCadastro(List<Program> pessoa)
         {
             Console.WriteLine("Registro de Cadastro");
-            Console.WriteLine(null, pessoa.ToString());
+            foreach (Program valor in pessoa)
+            {
+                Console.Write(valor);
+            }
         }
     }
 }
