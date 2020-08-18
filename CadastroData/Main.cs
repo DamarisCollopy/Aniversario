@@ -140,7 +140,7 @@ namespace CadastroData
             Console.WriteLine("Registro de Cadastro");
             foreach (Program valor in pessoa)
             {
-                Console.Write(valor);
+                Console.Write(valor.ToString());
             }
         }
     }

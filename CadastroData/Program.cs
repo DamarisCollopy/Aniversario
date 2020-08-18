@@ -18,6 +18,9 @@ namespace CadastroData
         public String Nome {get;set;}
         public String Sobrenome {get;set;}
 
-        
+        public override string ToString()
+        {
+            return "Person: " + Nome + " " + Sobrenome + " " + DataEntrada;
+        }
     }
 }
