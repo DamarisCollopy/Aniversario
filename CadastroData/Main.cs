@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 
 namespace CadastroData
 {
@@ -19,16 +21,15 @@ namespace CadastroData
                 {
                     case 1:
                         CriarCadastro(pessoa);
-                       
                         break;
                     case 2:
                         ConsultarCadastro(pessoa);
                         break;
                     case 3:
-                        
+                        ProcurarCadastro(pessoa);
                         break;
                     case 4:
-                      
+                        Deletar(pessoa);
                         break;
                     case 5:
                         Console.WriteLine("Programa Encerrado!");
@@ -46,8 +47,9 @@ namespace CadastroData
             Console.WriteLine("Cadastro:");
             Console.WriteLine("1) Incluir Pessoa");
             Console.WriteLine("2) Consultar Pessoa");
-            Console.WriteLine("3) Excluir Pessoa");
-            Console.WriteLine("4) Exit");
+            Console.WriteLine("3) Buscar Cadastro");
+            Console.WriteLine("4) Deletar");
+            Console.WriteLine("5) Sair");
             Console.Write("\r\nSelecione a opção: ");
             do
             {
@@ -65,7 +67,7 @@ namespace CadastroData
 
         public static String leNome (String mensagem)
         {
-            String nome;
+            string nome;
            do
             {
                 Console.Write("Informe o nome : ");
@@ -82,7 +84,7 @@ namespace CadastroData
 
         public static String leSobrenome(String mensagem)
         {
-            String sobrenome;
+            string sobrenome;
             do
             {
                 Console.Write("Informe o nome : ");
@@ -128,19 +130,57 @@ namespace CadastroData
             nome = leNome("Entre com o nome :");
             sobrenome = leSobrenome("Entre com o sobrenome : ");
             dataEntrada = leDataEntrada("Entre com a data do seu aniversario :");
+            
 
             Program criarCadastro = new Program(nome, sobrenome, dataEntrada);
             pessoa.Add(criarCadastro);
-           
-              
         }
 
+        public static void ProcurarCadastro(List<Program> pessoa)
+        {
+            string nome;
+            nome = leNome("Entre com o nome :");
+            try
+            {
+                var procurar = pessoa.Single(x => x.Nome == nome);
+                Console.WriteLine(procurar.ToString());
+                Console.ReadLine();
+    
+                Console.WriteLine( $"Dias para o proximo aniversario : {procurar.diferencaData()}");
+                Console.ReadLine();
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.ReadLine(); 
+            }
+
+        }
+        public static void Deletar(List<Program> pessoa)
+        {
+            string nome;
+            nome = leNome("Entre com o nome :");
+            try
+            {
+                var procurar = pessoa.Single(x => x.Nome == nome);
+                pessoa.Remove(procurar);
+                Console.WriteLine("Cadastro deletado com sucesso!");
+                Console.ReadLine();
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.ReadLine();
+            }
+        }
         public static void ConsultarCadastro(List<Program> pessoa)
         {
             Console.WriteLine("Registro de Cadastro");
             foreach (Program valor in pessoa)
             {
                 Console.Write(valor.ToString());
+                Console.ReadLine();
+
             }
         }
     }
