@@ -2,12 +2,12 @@
 
 namespace CadastroData
 {
-    class Program
+    class Pessoa
     {
         private DateTime dataEntrada;
         private string nome, sobrenome;
 
-        public Program(string nome, string sobrenome, DateTime dataEntrada)
+        public Pessoa(string nome, string sobrenome, DateTime dataEntrada)
         {
             this.nome = nome;
             this.sobrenome = sobrenome;
@@ -26,7 +26,15 @@ namespace CadastroData
 
         public Double diferencaData ()
         {
-            return dataEntrada.Subtract(DateTime.Today).TotalDays;
+            double aniversario = dataEntrada.Subtract(DateTime.Today).TotalDays;
+
+            if (aniversario == 0) {
+
+                Console.WriteLine($"Feliz aniversario !!! ");
+                Console.ReadLine();
+            }
+
+            return aniversario; 
         }
 
         public override string ToString()

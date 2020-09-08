@@ -10,7 +10,7 @@ namespace CadastroData
         static void Main(string[] args)
         {
 
-            List<Program> pessoa = new List<Program>();
+            List<Pessoa> pessoa = new List<Pessoa>();
 
             int SAIR = 5;
             int opcao = Menu();
@@ -87,11 +87,11 @@ namespace CadastroData
             string sobrenome;
             do
             {
-                Console.Write("Informe o nome : ");
+                Console.Write("Informe o sobrenome : ");
                 sobrenome = Console.ReadLine();
                 if (sobrenome.Length == 0)
                 {
-                    Console.WriteLine("Entre com o nome ");
+                    Console.WriteLine("Entre com o sobrenome : ");
                     Console.ReadLine();
 
                 }
@@ -122,7 +122,7 @@ namespace CadastroData
             return dataEntrada;
         }
 
-        public static void CriarCadastro(List<Program> pessoa)
+        public static void CriarCadastro(List<Pessoa> pessoa)
         {
             string nome, sobrenome;
             DateTime dataEntrada;
@@ -132,11 +132,11 @@ namespace CadastroData
             dataEntrada = leDataEntrada("Entre com a data do seu aniversario :");
             
 
-            Program criarCadastro = new Program(nome, sobrenome, dataEntrada);
+            Pessoa criarCadastro = new Pessoa(nome, sobrenome, dataEntrada);
             pessoa.Add(criarCadastro);
         }
 
-        public static void ProcurarCadastro(List<Program> pessoa)
+        public static void ProcurarCadastro(List<Pessoa> pessoa)
         {
             string nome;
             nome = leNome("Entre com o nome :");
@@ -156,7 +156,7 @@ namespace CadastroData
             }
 
         }
-        public static void Deletar(List<Program> pessoa)
+        public static void Deletar(List<Pessoa> pessoa)
         {
             string nome;
             nome = leNome("Entre com o nome :");
@@ -173,10 +173,10 @@ namespace CadastroData
                 Console.ReadLine();
             }
         }
-        public static void ConsultarCadastro(List<Program> pessoa)
+        public static void ConsultarCadastro(List<Pessoa> pessoa)
         {
             Console.WriteLine("Registro de Cadastro");
-            foreach (Program valor in pessoa)
+            foreach (Pessoa valor in pessoa)
             {
                 Console.Write(valor.ToString());
                 Console.ReadLine();
