@@ -10,7 +10,7 @@ namespace CadastroData
         static void Main(string[] args)
         {
 
-            List<Pessoa> pessoa = new List<Pessoa>();
+            List<Pessoa> pessoas = new List<Pessoa>();
 
             int SAIR = 5;
             int opcao = Menu();
@@ -20,16 +20,16 @@ namespace CadastroData
                 switch (opcao)
                 {
                     case 1:
-                        CriarCadastro(pessoa);
+                        CriarCadastro(pessoas);
                         break;
                     case 2:
-                        ConsultarCadastro(pessoa);
+                        ConsultarCadastro(pessoas);
                         break;
                     case 3:
-                        ProcurarCadastro(pessoa);
+                        ProcurarCadastro(pessoas);
                         break;
                     case 4:
-                        Deletar(pessoa);
+                        Deletar(pessoas);
                         break;
                     case 5:
                         Console.WriteLine("Programa Encerrado!");
@@ -122,7 +122,7 @@ namespace CadastroData
             return dataEntrada;
         }
 
-        public static void CriarCadastro(List<Pessoa> pessoa)
+        public static void CriarCadastro(List<Pessoa> pessoas)
         {
             string nome, sobrenome;
             DateTime dataEntrada;
@@ -133,7 +133,7 @@ namespace CadastroData
             
 
             Pessoa criarCadastro = new Pessoa(nome, sobrenome, dataEntrada);
-            pessoa.Add(criarCadastro);
+            pessoas.Add(criarCadastro);
         }
 
         public static void ProcurarCadastro(List<Pessoa> pessoa)
@@ -156,14 +156,14 @@ namespace CadastroData
             }
 
         }
-        public static void Deletar(List<Pessoa> pessoa)
+        public static void Deletar(List<Pessoa> pessoas)
         {
             string nome;
             nome = leNome("Entre com o nome :");
             try
             {
-                var procurar = pessoa.Single(x => x.Nome == nome);
-                pessoa.Remove(procurar);
+                var procurar = pessoas.Single(x => x.Nome == nome);
+                pessoas.Remove(procurar);
                 Console.WriteLine("Cadastro deletado com sucesso!");
                 Console.ReadLine();
             }
@@ -173,10 +173,10 @@ namespace CadastroData
                 Console.ReadLine();
             }
         }
-        public static void ConsultarCadastro(List<Pessoa> pessoa)
+        public static void ConsultarCadastro(List<Pessoa> pessoas)
         {
             Console.WriteLine("Registro de Cadastro");
-            foreach (Pessoa valor in pessoa)
+            foreach (Pessoa valor in pessoas)
             {
                 Console.Write(valor.ToString());
                 Console.ReadLine();
