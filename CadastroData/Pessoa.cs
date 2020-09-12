@@ -7,6 +7,10 @@ namespace CadastroData
         private DateTime dataEntrada;
         private string nome, sobrenome;
 
+        public Pessoa()
+        {
+        }
+
         public Pessoa(string nome, string sobrenome, DateTime dataEntrada)
         {
             this.nome = nome;
