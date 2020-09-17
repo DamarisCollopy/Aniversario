@@ -30,8 +30,10 @@ namespace CadastroData
 
         public Double diferencaData ()
         {
-            double aniversario = (dataEntrada - (DateTime.Now)).Days;
-
+            DateTime data = DateTime.Now;
+            double aniversario = (data.Day - dataEntrada.Day) * 12 + data.Month - dataEntrada.Month;
+            //DateTime aniversario = new DateTime(DateTime.Now.Year, dataEntrada.Month, dataEntrada.Day);
+           
             if (aniversario == 0) {
 
                 Console.WriteLine($"Feliz aniversario !!! ");

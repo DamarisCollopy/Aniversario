@@ -259,7 +259,6 @@ namespace CadastroData
                 }
             }
         }
-
         private static void EscreverArquivo(List<Pessoa> pessoas)
         {
 
