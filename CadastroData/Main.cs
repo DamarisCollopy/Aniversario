@@ -23,8 +23,8 @@ namespace CadastroData
                 {
                     case 1:
                         CriarCadastro(pessoas);
-                        EscreverArquivo(pessoas);
-                        LerArquivo(pessoas);
+                        //EscreverArquivo(pessoas);
+                        //LerArquivo(pessoas);
                         break;
                     case 2:
                         ConsultarCadastro(pessoas);
@@ -52,7 +52,7 @@ namespace CadastroData
             Console.Clear();
             Console.WriteLine("Cadastro:");
             Console.WriteLine("1) Incluir Pessoa");
-            Console.WriteLine("2) Consultar Pessoa");
+            Console.WriteLine("2) Consultar Cadastro");
             Console.WriteLine("3) Buscar Cadastro");
             Console.WriteLine("4) Editar");
             Console.WriteLine("5) Deletar");
@@ -183,11 +183,13 @@ namespace CadastroData
         }
         public static void ProcurarCadastro(List<Pessoa> pessoas)
         {
-            string nome;
+            string nome, sobrenome;
             nome = leNome("Entre com o nome :");
+            sobrenome = leSobrenome("Entre com o sobrenome");
+          
             try
             {
-                var procurar = pessoas.Single(x => x.Nome == nome);
+                var procurar = pessoas.Single(x => x.Nome == nome && x.Sobrenome == sobrenome);
                 Console.WriteLine(procurar.ToString());
                 Console.ReadLine();
 
@@ -247,24 +249,21 @@ namespace CadastroData
         public static void ConsultarCadastro(List<Pessoa> pessoas)
         {
             Console.WriteLine("Registro de Cadastro");
-
-            if (pessoas != null)
             {
                 foreach (Pessoa valor in pessoas)
                 {
                     Console.Write(valor.ToString());
                     Console.ReadLine();
-                    return;
+                    Console.WriteLine($"Dias para o proximo aniversario : {valor.diferencaData()}");
+                    Console.ReadLine();
                 }
-                Console.WriteLine("Não existe cadastro !");
-                Console.ReadLine();
             }
         }
 
         private static void EscreverArquivo(List<Pessoa> pessoas)
         {
 
-            var diretorio = "dir";
+            var diretorio = @"C:\Users\Damaris-PC\source\repos\Damis1988";
 
             if (!Directory.Exists(diretorio))
             {
@@ -294,7 +293,7 @@ namespace CadastroData
         }
         private static void LerArquivo(List<Pessoa> pessoas)
         {
-            var diretorio = "dir";
+            var diretorio = @"C:\Users\Damaris-PC\source\repos\Damis1988";
             var nomeArquivo = "cadastro.csv";
             var caminhoArquivo = Path.Combine(diretorio, nomeArquivo);
 
@@ -314,21 +313,19 @@ namespace CadastroData
 
                 int nomeIndex = 0;
                 int sobrenomeIndex = 1;
-                int numeroIndex = 2;
+                int dataEntradaIndex = 2;
 
-                Console.WriteLine(dadosCadastro[numeroIndex]);
+             
                 p.Nome = dadosCadastro[nomeIndex];
                 p.Sobrenome = dadosCadastro[sobrenomeIndex];
-              
-                //c.Numero = Convert.ToInt32(dadosCandidato[numeroIndex]);
-
+                p.DataEntrada = DateTime.Parse(dadosCadastro[dataEntradaIndex]);
                 pessoas.Add(p);
             }
 
-            Console.WriteLine("Relação de candidatos:");
+            Console.WriteLine("Cadastro:");
             foreach (var c in pessoas)
             {
-                Console.WriteLine($"Candidato: {c.Nome} ({c.Sobrenome})");
+                Console.WriteLine($"Cadastro: {c.Nome} ({c.Sobrenome})({c.DataEntrada})");
             }
         }
     }

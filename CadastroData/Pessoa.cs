@@ -30,7 +30,7 @@ namespace CadastroData
 
         public Double diferencaData ()
         {
-            double aniversario = dataEntrada.Subtract(DateTime.Today).TotalDays;
+            double aniversario = (dataEntrada - (DateTime.Now)).Days;
 
             if (aniversario == 0) {
 
