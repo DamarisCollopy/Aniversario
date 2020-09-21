@@ -188,7 +188,7 @@ namespace CadastroData
           
             try
             {
-                var procurar = pessoas.Single(x => x.Nome == nome && x.Sobrenome == sobrenome);
+                var procurar = pessoas.SingleOrDefault(x => x.Nome == nome && x.Sobrenome == sobrenome);
                 Console.WriteLine(procurar.ToString());
                 Console.ReadLine();
 
@@ -214,8 +214,6 @@ namespace CadastroData
                 Console.WriteLine("Cadastro deletado com sucesso!");
                 Console.ReadLine();
                 DeleteArquivo(pessoas);
-                Console.WriteLine("Arquivo deletado com sucesso!");
-                Console.ReadLine();
                 EscreverArquivo(pessoas);
                 LerArquivo(pessoas);
             }
@@ -292,7 +290,7 @@ namespace CadastroData
 
             foreach (Pessoa valor in pessoas)
             {
-                csv.AppendLine($"{valor}");
+                csv.AppendLine($"{valor.Nome}; {valor.Sobrenome}; { valor.DataEntrada}");
             }
             File.AppendAllText(caminhoArquivo, csv.ToString());
         }
@@ -302,25 +300,34 @@ namespace CadastroData
             var nomeArquivo = "cadastro.csv";
             var caminhoArquivo = Path.Combine(diretorio, nomeArquivo);
 
-       
             var linhas = File.ReadAllLines(caminhoArquivo);
-
+            List<Pessoa> index = new List<Pessoa>();
+            
             ArraySegment<string> linhasSegmento = new ArraySegment<string>(linhas);
            
             var dados = linhasSegmento.Slice(1);
 
             foreach (var linha in dados)
             {
-                Pessoa p = new Pessoa();
+                Pessoa c = new Pessoa();
                 //Caracteres de separação dos elementos:
                 Char[] tokens = new Char[] { ';', ',', '\n' };
-                string[] dadosCadastro = linha.Split(tokens);
+                string[] dadosCandidato = linha.Split(tokens);
+
+                int nomeIndex = 0;
+                int sobrenomeIndex = 1;
+                int dataIndex = 2;
+
+                Console.WriteLine(dadosCandidato[nomeIndex]);
+                c.Sobrenome = dadosCandidato[sobrenomeIndex];
+                c.DataEntrada = DateTime.Parse(dadosCandidato[dataIndex]);
+                index.Add(c);
             }
 
-            Console.WriteLine("Cadastro:");
-            foreach (var c in pessoas)
+            Console.WriteLine("Relação de candidatos:");
+            foreach (var c in index)
             {
-                Console.WriteLine($"Cadastro: {c}");
+                Console.WriteLine($"Candidato: {c.Nome} ({c.Sobrenome} ({c.DataEntrada})");
             }
         }
         private static void DeleteArquivo(List<Pessoa> pessoas)

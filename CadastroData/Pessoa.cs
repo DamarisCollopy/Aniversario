@@ -16,7 +16,11 @@ namespace CadastroData
             this.sobrenome = sobrenome;
             this.dataEntrada = dataEntrada;
         }
-        public DateTime DataEntrada{get;set;}
+        public DateTime DataEntrada
+        {
+            get { return dataEntrada; }
+            set { dataEntrada = value; }
+        }
         public string Nome {
             get { return nome; }
             set { nome = value; }
