@@ -216,6 +216,8 @@ namespace CadastroData
                 DeleteArquivo(pessoas);
                 Console.WriteLine("Arquivo deletado com sucesso!");
                 Console.ReadLine();
+                EscreverArquivo(pessoas);
+                LerArquivo(pessoas);
             }
             catch (InvalidOperationException e)
             {
@@ -232,6 +234,7 @@ namespace CadastroData
             try
             {
                 var procurar = pessoas.SingleOrDefault(x => x.Nome == nome && x.Sobrenome == sobrenome);
+                DeleteArquivo(pessoas);
                 pessoas.Remove(procurar);
                 Console.WriteLine("Informe as correções !");
                 nome = leNome("Entre com o nome :");
@@ -241,6 +244,8 @@ namespace CadastroData
                 pessoas.Add(criarCadastro);
                 Console.WriteLine("Cadastro editado com sucesso!");
                 Console.ReadLine();
+                EscreverArquivo(pessoas);
+                LerArquivo(pessoas);
             }
             catch (InvalidOperationException e)
             {
@@ -264,7 +269,7 @@ namespace CadastroData
         private static void EscreverArquivo(List<Pessoa> pessoas)
         {
 
-            var diretorio = @"C:\Users\Damaris-PC\source\repos\Damis1988";
+            var diretorio = @"C:\Users\Damaris-PC\source\repos\Damis1988\Arquivo";
 
             if (!Directory.Exists(diretorio))
             {
@@ -287,13 +292,13 @@ namespace CadastroData
 
             foreach (Pessoa valor in pessoas)
             {
-                csv.AppendLine($"{valor.Nome};{valor.Sobrenome};{String.Format("{0:MM/dd/yyyy}",valor.DataEntrada)}");
+                csv.AppendLine($"{valor}");
             }
             File.AppendAllText(caminhoArquivo, csv.ToString());
         }
         private static void LerArquivo(List<Pessoa> pessoas)
         {
-            var diretorio = @"C:\Users\Damaris-PC\source\repos\Damis1988";
+            var diretorio = @"C:\Users\Damaris-PC\source\repos\Damis1988\Arquivo";
             var nomeArquivo = "cadastro.csv";
             var caminhoArquivo = Path.Combine(diretorio, nomeArquivo);
 
@@ -310,33 +315,23 @@ namespace CadastroData
                 //Caracteres de separação dos elementos:
                 Char[] tokens = new Char[] { ';', ',', '\n' };
                 string[] dadosCadastro = linha.Split(tokens);
-
-                int nomeIndex = 0;
-                int sobrenomeIndex = 1;
-                int dataEntradaIndex = 2;
-
-             
-                p.Nome = dadosCadastro[nomeIndex];
-                p.Sobrenome = dadosCadastro[sobrenomeIndex];
-                p.DataEntrada = DateTime.Parse(dadosCadastro[dataEntradaIndex]);
-                pessoas.Add(p);
             }
 
             Console.WriteLine("Cadastro:");
             foreach (var c in pessoas)
             {
-                Console.WriteLine($"Cadastro: {c.Nome} ({c.Sobrenome})({c.DataEntrada})");
+                Console.WriteLine($"Cadastro: {c}");
             }
         }
         private static void DeleteArquivo(List<Pessoa> pessoas)
         {
-            var diretorio = @"C:\Users\Damaris-PC\source\repos\Damis1988";
+            var diretorio = @"C:\Users\Damaris-PC\source\repos\Damis1988\Arquivo";
             var nomeArquivo = "cadastro.csv";
             var caminhoArquivo = Path.Combine(diretorio, nomeArquivo);
 
-            if (!Directory.Exists(caminhoArquivo))
+            if (Directory.Exists(diretorio))
             {
-                Directory.Delete(caminhoArquivo);
+                Directory.Delete(diretorio,true);
             }
             else
             {

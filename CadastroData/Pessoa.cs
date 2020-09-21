@@ -28,15 +28,13 @@ namespace CadastroData
         public String diferencaData ()
         {
             DateTime data = DateTime.Now;
-            
-            double aniversario = (data.Month - dataEntrada.Month)  + (data.Day - dataEntrada.Day);
             double mes = (dataEntrada.Month - data.Month);
             if (mes < 0)
             {
                 mes +=12;
             }
             double dias = (data.Day - dataEntrada.Day);
-            if (aniversario == 0) {
+            if ((data.Month == dataEntrada.Month) && (data.Day == dataEntrada.Day)) {
 
                 Console.WriteLine($"Feliz aniversario !!! ");
                 Console.ReadLine();
