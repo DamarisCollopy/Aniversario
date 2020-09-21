@@ -182,25 +182,26 @@ namespace CadastroData
         }
         public static void ProcurarCadastro(List<Pessoa> pessoas)
         {
-            string nome, sobrenome;
-            nome = leNome("Entre com o nome :");
-            sobrenome = leSobrenome("Entre com o sobrenome");
-          
             try
             {
-                var procurar = pessoas.SingleOrDefault(x => x.Nome == nome && x.Sobrenome == sobrenome);
-                Console.WriteLine(procurar.ToString());
-                Console.ReadLine();
+                if (pessoas.Any())
+                {
+                    string nome, sobrenome;
+                    nome = leNome("Entre com o nome :");
+                    sobrenome = leSobrenome("Entre com o sobrenome");
+                    var procurar = pessoas.SingleOrDefault(x => x.Nome == nome && x.Sobrenome == sobrenome);
+                    Console.WriteLine(procurar.ToString());
+                    Console.ReadLine();
 
-                Console.WriteLine($"Dias para o proximo aniversario : {procurar.diferencaData()}");
-                Console.ReadLine();
+                    Console.WriteLine($"Dias para o proximo aniversario : {procurar.diferencaData()}");
+                    Console.ReadLine();
+                }
             }
             catch (InvalidOperationException e)
             {
                 Console.WriteLine(e.Message);
                 Console.ReadLine();
             }
-
         }
         public static void Deletar(List<Pessoa> pessoas)
         {
@@ -214,8 +215,11 @@ namespace CadastroData
                 Console.WriteLine("Cadastro deletado com sucesso!");
                 Console.ReadLine();
                 DeleteArquivo(pessoas);
-                EscreverArquivo(pessoas);
-                LerArquivo(pessoas);
+                if(pessoas.Any())
+                {
+                    EscreverArquivo(pessoas);
+                    LerArquivo(pessoas);
+                }
             }
             catch (InvalidOperationException e)
             {
@@ -234,6 +238,7 @@ namespace CadastroData
                 var procurar = pessoas.SingleOrDefault(x => x.Nome == nome && x.Sobrenome == sobrenome);
                 DeleteArquivo(pessoas);
                 pessoas.Remove(procurar);
+
                 Console.WriteLine("Informe as correções !");
                 nome = leNome("Entre com o nome :");
                 sobrenome = leSobrenome("Entre com o sobrenome : ");
@@ -266,7 +271,6 @@ namespace CadastroData
         }
         private static void EscreverArquivo(List<Pessoa> pessoas)
         {
-
             var diretorio = @"C:\Users\Damaris-PC\source\repos\Damis1988\Arquivo";
 
             if (!Directory.Exists(diretorio))
