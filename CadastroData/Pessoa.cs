@@ -10,14 +10,12 @@ namespace CadastroData
         public Pessoa()
         {
         }
-
         public Pessoa(string nome, string sobrenome, DateTime dataEntrada)
         {
             this.nome = nome;
             this.sobrenome = sobrenome;
             this.dataEntrada = dataEntrada;
         }
-
         public DateTime DataEntrada{get;set;}
         public string Nome {
             get { return nome; }
@@ -27,22 +25,24 @@ namespace CadastroData
             get { return sobrenome; }
             set { sobrenome = value; }
         }
-
-        public Double diferencaData ()
+        public String diferencaData ()
         {
             DateTime data = DateTime.Now;
-            double aniversario = (data.Day - dataEntrada.Day) * 12 + data.Month - dataEntrada.Month;
-            //DateTime aniversario = new DateTime(DateTime.Now.Year, dataEntrada.Month, dataEntrada.Day);
-           
+            
+            double aniversario = (data.Month - dataEntrada.Month)  + (data.Day - dataEntrada.Day);
+            double mes = (dataEntrada.Month - data.Month);
+            if (mes < 0)
+            {
+                mes +=12;
+            }
+            double dias = (data.Day - dataEntrada.Day);
             if (aniversario == 0) {
 
                 Console.WriteLine($"Feliz aniversario !!! ");
                 Console.ReadLine();
             }
-
-            return aniversario; 
+            return "Faltam : " + mes + " meses e " + dias + " dias para o seu aniversario" ; 
         }
-
         public override string ToString()
         {
             String data = String.Format("{0:MM/dd/yyyy}", dataEntrada);
