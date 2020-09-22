@@ -195,7 +195,12 @@ namespace CadastroData
 
                     Console.WriteLine($"Dias para o proximo aniversario : {procurar.diferencaData()}");
                     Console.ReadLine();
+
                 }
+                else
+                    Console.WriteLine("Cadastro vazio !");
+                Console.ReadLine();
+
             }
             catch (InvalidOperationException e)
             {
@@ -215,7 +220,7 @@ namespace CadastroData
                 Console.WriteLine("Cadastro deletado com sucesso!");
                 Console.ReadLine();
                 DeleteArquivo(pessoas);
-                if(pessoas.Any())
+                if (pessoas.Any())
                 {
                     EscreverArquivo(pessoas);
                     LerArquivo(pessoas);
@@ -258,16 +263,23 @@ namespace CadastroData
         }
         public static void ConsultarCadastro(List<Pessoa> pessoas)
         {
-            Console.WriteLine("Registro de Cadastro");
+            if (pessoas.Any())
             {
-                foreach (Pessoa valor in pessoas)
+                Console.WriteLine("Registro de Cadastro");
                 {
-                    Console.Write(valor.ToString());
-                    Console.ReadLine();
-                    Console.WriteLine($"Dias para o proximo aniversario : {valor.diferencaData()}");
-                    Console.ReadLine();
+                    foreach (Pessoa valor in pessoas)
+                    {
+                        Console.Write(valor.ToString());
+                        Console.ReadLine();
+                        Console.WriteLine($"Dias para o proximo aniversario : {valor.diferencaData()}");
+                        Console.ReadLine();
+                    }
                 }
             }
+            else
+                Console.WriteLine("Cadastro vazio !");
+            Console.ReadLine();
+
         }
         private static void EscreverArquivo(List<Pessoa> pessoas)
         {
@@ -306,9 +318,9 @@ namespace CadastroData
 
             var linhas = File.ReadAllLines(caminhoArquivo);
             List<Pessoa> index = new List<Pessoa>();
-            
+
             ArraySegment<string> linhasSegmento = new ArraySegment<string>(linhas);
-           
+
             var dados = linhasSegmento.Slice(1);
 
             foreach (var linha in dados)
@@ -342,7 +354,7 @@ namespace CadastroData
 
             if (Directory.Exists(diretorio))
             {
-                Directory.Delete(diretorio,true);
+                Directory.Delete(diretorio, true);
             }
             else
             {
