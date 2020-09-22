@@ -23,12 +23,13 @@ namespace CadastroData
                     case 1:
                         CriarCadastro(pessoas);
                         EscreverArquivo(pessoas);
-                        LerArquivo(pessoas);
                         break;
                     case 2:
+                        LerArquivo(pessoas);
                         ConsultarCadastro(pessoas);
                         break;
                     case 3:
+                        LerArquivo(pessoas);
                         ProcurarCadastro(pessoas);
                         break;
                     case 4:
@@ -334,16 +335,16 @@ namespace CadastroData
                 int sobrenomeIndex = 1;
                 int dataIndex = 2;
 
-                Console.WriteLine(dadosCandidato[nomeIndex]);
+                c.Nome = dadosCandidato[nomeIndex];
                 c.Sobrenome = dadosCandidato[sobrenomeIndex];
                 c.DataEntrada = DateTime.Parse(dadosCandidato[dataIndex]);
                 index.Add(c);
             }
 
-            Console.WriteLine("Relação de candidatos:");
+            Console.WriteLine("Cadastro em arquivo:");
             foreach (var c in index)
             {
-                Console.WriteLine($"Candidato: {c.Nome} ({c.Sobrenome} ({c.DataEntrada})");
+                Console.WriteLine($"Cadastro: {c.Nome} ({c.Sobrenome} ({c.DataEntrada})");
             }
         }
         private static void DeleteArquivo(List<Pessoa> pessoas)
